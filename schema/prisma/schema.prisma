@@ -1,0 +1,24 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+  is_deleted Boolean  @default(false)
+  todos      todos[]
+}
+
+model todos {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  title      String   @default("")
+  done       Boolean  @default(false)
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+  user_id    String   @db.Uuid
+  user       users    @relation(fields: [user_id], references: [id])
+
+  @@index([user_id])
+}
