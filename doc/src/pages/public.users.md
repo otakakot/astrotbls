@@ -1,3 +1,7 @@
+---
+layout: ../layouts/Layout.astro
+---
+
 # public.users
 
 ## Description
