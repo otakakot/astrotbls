@@ -20,7 +20,6 @@ jobs:
         uses: withastro/action@v1
         with:
           path: doc
-          package-manager: bun
   deploy:
     needs: build
     runs-on: ubuntu-latest
